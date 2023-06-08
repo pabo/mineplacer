@@ -24,7 +24,7 @@ pub struct Window {
 impl Window {
     pub const MARGIN_SIZE: u32 = 3;
     pub const CELL_SIZE: u32 = 16;
-    pub const HEADER_SIZE: Size = Size::from_wh(Self::CELL_SIZE * 16, 24);
+    pub const HEADER_SIZE: Size = Size::from_wh(Self::CELL_SIZE * 30, 24);
     pub const BOARD_SIZE: Size = Size::from_wh(Self::CELL_SIZE * 30, Self::CELL_SIZE * 30);
     pub const WINDOW_SIZE: Size = Size::from_wh(
         Self::BOARD_SIZE.width + Self::MARGIN_SIZE * 2,

@@ -34,7 +34,7 @@ impl Level {
     fn height(self) -> usize {
         match self {
             Level::Small => 15,
-            Level::Large => 17,
+            Level::Large => 30,
         }
     }
 
@@ -85,23 +85,25 @@ impl Model {
 
         // f.u. wf
         let rows = [
-            " XXXX  X   X   XXXX  X  X     ",
-            " X     X   X  X      X X      ",
-            " XXX   X   X  X      XX       ",
-            " X     X   X  X      X X      ",
-            " X      XXX    XXXX  X  X     ",
             "                              ",
-            " X     X   XXX   X   X        ",
-            " X     X  X   X  XX  X        ",
-            " X  X  X  XXXXX  X X X        ",
-            " X X X X  X   X  X  XX        ",
-            "  X   X   X   X  X   X        ",
             "                              ",
-            " XXXX  X   X  X   X   XXX     ",
-            " X     X   X  XX  X  X        ",
-            " XXX   X   X  X X X  X XXX    ",
-            " X     X   X  X  XX  X   X    ",
-            " X      XXX   X   X   XXX     ",
+            "  XXXX  X   X   XXXX  X  X    ",
+            "  X     X   X  X      X X     ",
+            "  XXX   X   X  X      XX      ",
+            "  X     X   X  X      X X     ",
+            "  X      XXX    XXXX  X  X    ",
+            "                              ",
+            "  X     X   XXX   X   X       ",
+            "  X     X  X   X  XX  X       ",
+            "  X  X  X  XXXXX  X X X       ",
+            "  X X X X  X   X  X  XX       ",
+            "   X   X   X   X  X   X       ",
+            "                              ",
+            "  XXXX  X   X  X   X   XXX    ",
+            "  X     X   X  XX  X  X       ",
+            "  XXX   X   X  X X X  X XXX   ",
+            "  X     X   X  X  XX  X   X   ",
+            "  X      XXX   X   X   XXX    ",
         ];
 
         self.remaining_mines = 0;
