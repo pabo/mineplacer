@@ -19,7 +19,7 @@ pub enum Level {
 impl Level {
     fn mines(self) -> usize {
         match self {
-            Level::Small => 15,
+            Level::Small => 100,
             Level::Large => 99,
         }
     }
