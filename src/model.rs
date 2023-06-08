@@ -34,7 +34,7 @@ impl Level {
     fn height(self) -> usize {
         match self {
             Level::Small => 15,
-            Level::Large => 17,
+            Level::Large => 18,
         }
     }
 
