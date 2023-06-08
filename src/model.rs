@@ -19,7 +19,7 @@ pub enum Level {
 impl Level {
     fn mines(self) -> usize {
         match self {
-            Level::Small => 100,
+            Level::Small => 50,
             Level::Large => 99,
         }
     }
@@ -27,14 +27,14 @@ impl Level {
     fn width(self) -> usize {
         match self {
             Level::Small => 8,
-            Level::Large => 16,
+            Level::Large => 30,
         }
     }
 
     fn height(self) -> usize {
         match self {
             Level::Small => 15,
-            Level::Large => 30,
+            Level::Large => 17,
         }
     }
 
@@ -77,16 +77,51 @@ impl Model {
     pub fn start_game<S: System>(&mut self, system: &mut S, level: Level) -> Result<()> {
         self.level = level;
         self.board = Board::default();
+
         self.board.region = Region::new(
             level.offset(),
             Size::from_wh(level.width() as u32, level.height() as u32),
         );
 
-        let mut mines = self.board.region.iter().collect::<Vec<_>>();
-        mines.shuffle(&mut self.rng);
-        for p in &mines[0..level.mines()] {
-            self.board.cells[p.y as usize][p.x as usize].expected_mine = true;
+        // f.u. wf
+        let rows = [
+            "011101001001110100100000000000",
+            "010001001010000101000000000000",
+            "011001001010000110000000000000",
+            "010001001010000101000000000000",
+            "010000110001110100100000000000",
+            "000000000000000000000000000000",
+            "010001001100100010000000000000",
+            "010001010010110010000000000000",
+            "010101010010101010000000000000",
+            "010101010010100110000000000000",
+            "001010010010100010000000000000",
+            "000000000000000000000000000000",
+            "011110100101000100111000000000",
+            "010000100101100101000000000000",
+            "011000100101010101011100000000",
+            "010000100101001101000100000000",
+            "010000011001000100111000000000",
+        ];
+
+        for (y, row) in rows.iter().enumerate() {
+            for (x, c) in row.split("").into_iter().enumerate() {
+                if c == "1" {
+                    self.board.cells[y as usize][x as usize].expected_mine = true;
+                }
+            }
         }
+
+        // // create a vector of all the positions (in order)
+        // let mut mines = self.board.region.iter().collect::<Vec<_>>();
+
+        // // randomize the vector
+        // mines.shuffle(&mut self.rng);
+
+        // // for the first (number of mines desired) items in vector, mark the board cells as mines
+        // for p in &mines[0..level.mines()] {
+        //     self.board.cells[p.y as usize][p.x as usize].expected_mine = true;
+        // }
 
         self.start_time = system.clock_game_time();
         self.remaining_mines = level.mines();
