@@ -6,7 +6,7 @@ use pagurus::{
 use rand::seq::SliceRandom;
 use std::time::Duration;
 
-const WIDTH: usize = 16;
+const WIDTH: usize = 30;
 const HEIGHT: usize = 30;
 
 #[derive(Debug, Default, Clone, Copy)]
@@ -85,28 +85,28 @@ impl Model {
 
         // f.u. wf
         let rows = [
-            "011101001001110100100000000000",
-            "010001001010000101000000000000",
-            "011001001010000110000000000000",
-            "010001001010000101000000000000",
-            "010000110001110100100000000000",
-            "000000000000000000000000000000",
-            "010001001100100010000000000000",
-            "010001010010110010000000000000",
-            "010101010010101010000000000000",
-            "010101010010100110000000000000",
-            "001010010010100010000000000000",
-            "000000000000000000000000000000",
-            "011110100101000100111000000000",
-            "010000100101100101000000000000",
-            "011000100101010101011100000000",
-            "010000100101001101000100000000",
-            "010000011001000100111000000000",
+            " XXX X  X  XXX X  X           ",
+            " X   X  X X    X X            ",
+            " XX  X  X X    XX             ",
+            " X   X  X X    X X            ",
+            " X    XX   XXX X  X           ",
+            "                              ",
+            " X   X  XX  X   X             ",
+            " X   X X  X XX  X             ",
+            " X X X XXXX X X X             ",
+            " X X X X  X X  XX             ",
+            "  X X  X  X X   X             ",
+            "                              ",
+            " XXXX X  X X   X  XXX         ",
+            " X    X  X XX  X X            ",
+            " XX   X  X X X X X XXX        ",
+            " X    X  X X  XX X   X        ",
+            " X     XX  X   X  XXX         ",
         ];
 
         for (y, row) in rows.iter().enumerate() {
             for (x, c) in row.split("").into_iter().enumerate() {
-                if c == "1" {
+                if c == "X" {
                     self.board.cells[x as usize][y as usize].expected_mine = true;
                 }
             }
