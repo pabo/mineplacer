@@ -107,7 +107,7 @@ impl Model {
         for (y, row) in rows.iter().enumerate() {
             for (x, c) in row.split("").into_iter().enumerate() {
                 if c == "1" {
-                    self.board.cells[y as usize][x as usize].expected_mine = true;
+                    self.board.cells[x as usize][y as usize].expected_mine = true;
                 }
             }
         }
