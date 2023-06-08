@@ -3,7 +3,7 @@ use pagurus::{
     spatial::{Contains, Position, Region, Size},
     Result, System,
 };
-use rand::seq::SliceRandom;
+// use rand::seq::SliceRandom;
 use std::time::Duration;
 
 const WIDTH: usize = 30;
@@ -17,12 +17,12 @@ pub enum Level {
 }
 
 impl Level {
-    fn mines(self) -> usize {
-        match self {
-            Level::Small => 50,
-            Level::Large => 99,
-        }
-    }
+    // fn mines(self) -> usize {
+    //     match self {
+    //         Level::Small => 50,
+    //         Level::Large => 99,
+    //     }
+    // }
 
     fn width(self) -> usize {
         match self {
@@ -34,7 +34,7 @@ impl Level {
     fn height(self) -> usize {
         match self {
             Level::Small => 15,
-            Level::Large => 18,
+            Level::Large => 17,
         }
     }
 
@@ -106,7 +106,7 @@ impl Model {
 
         self.remaining_mines = 0;
         for (y, row) in rows.iter().enumerate() {
-            for (x, c) in row.split("").into_iter().enumerate() {
+            for (x, c) in row.split("").filter(|x| !x.is_empty()).enumerate() {
                 if c == "X" {
                     self.board.cells[y as usize][x as usize].expected_mine = true;
                     self.remaining_mines = self.remaining_mines + 1;
