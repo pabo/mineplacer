@@ -85,29 +85,31 @@ impl Model {
 
         // f.u. wf
         let rows = [
-            " XXX X  X  XXX X  X           ",
-            " X   X  X X    X X            ",
-            " XX  X  X X    XX             ",
-            " X   X  X X    X X            ",
-            " X    XX   XXX X  X           ",
+            " XXXX X   X   XXXX  X  X      ",
+            " X    X   X  X      X X       ",
+            " XXX  X   X  X      XX        ",
+            " X    X   X  X      X X       ",
+            " X     XXX    XXXX  X  X      ",
             "                              ",
-            " X   X  XX  X   X             ",
-            " X   X X  X XX  X             ",
-            " X X X XXXX X X X             ",
-            " X X X X  X X  XX             ",
-            "  X X  X  X X   X             ",
+            " X     X   XXX   X   X        ",
+            " X     X  X   X  XX  X        ",
+            " X  X  X  XXXXX  X X X        ",
+            " X X X X  X   X  X  XX        ",
+            "  X   X   X   X  X   X        ",
             "                              ",
-            " XXXX X  X X   X  XXX         ",
-            " X    X  X XX  X X            ",
-            " XX   X  X X X X X XXX        ",
-            " X    X  X X  XX X   X        ",
-            " X     XX  X   X  XXX         ",
+            " XXXX  X   X  X   X   XXX     ",
+            " X     X   X  XX  X  X        ",
+            " XXX   X   X  X X X  X XXX    ",
+            " X     X   X  X  XX  X   X    ",
+            " X      XXX   X   X   XXX     ",
         ];
 
+        self.remaining_mines = 0;
         for (y, row) in rows.iter().enumerate() {
             for (x, c) in row.split("").into_iter().enumerate() {
                 if c == "X" {
                     self.board.cells[x as usize][y as usize].expected_mine = true;
+                    self.remaining_mines = self.remaining_mines + 1;
                 }
             }
         }
@@ -123,8 +125,9 @@ impl Model {
         //     self.board.cells[p.y as usize][p.x as usize].expected_mine = true;
         // }
 
+        // self.remaining_mines = level.mines();
+
         self.start_time = system.clock_game_time();
-        self.remaining_mines = level.mines();
         self.state = State::Playing;
         Ok(())
     }
